@@ -1,0 +1,11 @@
+
+CREATE TABLE IF NOT EXISTS scores  (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  titre VARCHAR(255),
+  categorie VARCHAR(255),
+  score INT,
+  total INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
