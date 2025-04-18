@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'cheatsheet_flashcard_screen.dart';
-
 import '../models/cheatsheet.dart';
 
 class CheatSheetScreen extends StatefulWidget {
@@ -47,11 +46,26 @@ class _CheatSheetScreenState extends State<CheatSheetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Fiches de révision")),
+      appBar: AppBar(
+        backgroundColor: Colors.blue, // Custom background color
+        title: const Text(
+          "Fiches de révision",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text("Chargement des fiches..."),
+                ],
+              ),
+            )
           : grouped.isEmpty
-              ? const Center(child: Text("Fiches à venir..."))
+              ? const Center(child: Text("Aucune fiche disponible pour le moment.", style: TextStyle(fontSize: 16, color: Colors.grey)))
               : ListView(
                   children: grouped.entries.map((entry) {
                     final category = entry.key;
@@ -59,9 +73,15 @@ class _CheatSheetScreenState extends State<CheatSheetScreen> {
 
                     return Card(
                       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      elevation: 4, // Added shadow for depth
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)), // Rounded corners
                       child: ListTile(
-                        title: Text(category, style: const TextStyle(fontWeight: FontWeight.bold)),
-                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                        contentPadding: const EdgeInsets.all(16),
+                        title: Text(
+                          category,
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.blue),
                         onTap: () {
                           Navigator.push(
                             context,

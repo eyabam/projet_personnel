@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Redirection vers le login après 3 secondes
+    // Redirection to the login screen after 3 seconds
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/login');
     });
@@ -44,18 +44,40 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue, // Change background color
       body: Center(
         child: FadeTransition(
           opacity: _animation,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(Icons.shield, size: 80, color: Colors.deepPurple),
-              SizedBox(height: 16),
-              Text(
-                "CyberQuiz",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            children: [
+              // Icon with smooth animation
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: 1 + _animation.value * 0.5, // Scale effect
+                    child: child,
+                  );
+                },
+                child: const Icon(
+                  Icons.shield,
+                  size: 80,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16),
+              // App name text with smooth fade-in
+              FadeTransition(
+                opacity: _animation,
+                child: const Text(
+                  "CyberQuiz",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),

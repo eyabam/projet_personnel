@@ -4,11 +4,47 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/score.dart';
 
 class ScoreService {
-  final String baseUrl = "http://localhost:3000"; // change si besoin
+  final String baseUrl = "http://localhost:3000";
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('token');
+  }
+
+  Future<List<Score>> getUserScores() async {
+    final token = await getToken();
+    
+    if (token == null) {
+      throw Exception('No token found');
+    }
+
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/api/scores'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      print("Récupération des scores - Statut: ${response.statusCode}");
+      
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseBody = jsonDecode(response.body);
+        final List<dynamic> scoresData = responseBody['scores'];
+        
+        final scores = scoresData.map((e) => Score.fromJson(e)).toList();
+        print("Nombre de scores récupérés: ${scores.length}");
+        
+        return scores;
+      } else {
+        print("Erreur API: ${response.body}");
+        throw Exception('Failed to load scores: ${response.statusCode}');
+      }
+    } catch (e) {
+      print("Exception lors de la récupération des scores: $e");
+      throw Exception('Network error: $e');
+    }
   }
 
   Future<void> saveScore({
@@ -18,46 +54,39 @@ class ScoreService {
     required int total,
   }) async {
     final token = await getToken();
-    print(" TOKEN utilisé pour POST /scores : $token");
-    if (token == null) throw Exception("Token manquant");
-
-    final response = await http.post(
-      Uri.parse('$baseUrl/api/scores'),
-      headers: {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'titre': titre,
-        'categorie': categorie,
-        'score': score,
-        'total': total,
-      }),
-    );
-
-    if (response.statusCode != 201) {
-      throw Exception("Erreur enregistrement : ${response.body}");
+    
+    if (token == null) {
+      throw Exception('No token found');
     }
-  }
 
-  Future<List<Score>> getUserScores() async {
-    final token = await getToken();
-    print(" TOKEN utilisé pour GET /scores : $token");
-    if (token == null) return [];
-
-    final response = await http.get(
-      Uri.parse('$baseUrl/api/scores'),
-      headers: {
-        'Authorization': 'Bearer $token',
+    try {
+      print("Tentative de sauvegarde du score: $titre, $categorie, $score/$total");
+      
+      final response = await http.post(
+        Uri.parse('$baseUrl/api/scores'),
+        headers: {
+          'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
-      },
-    );
+        },
+        body: jsonEncode({
+          'titre': titre,
+          'categorie': categorie,
+          'score': score,
+          'total': total,
+        }),
+      );
 
-    if (response.statusCode == 200) {
-      final List data = jsonDecode(response.body);
-      return data.map((e) => Score.fromJson(e)).toList();
-    } else {
-      throw Exception("Erreur chargement scores");
+      print("Sauvegarde du score - Statut: ${response.statusCode}");
+      
+      if (response.statusCode != 201) {
+        print("Erreur API: ${response.body}");
+        throw Exception('Failed to save score: ${response.statusCode}');
+      } else {
+        print("Score sauvegardé avec succès");
+      }
+    } catch (e) {
+      print("Exception lors de la sauvegarde du score: $e");
+      throw Exception('Network error: $e');
     }
   }
 }

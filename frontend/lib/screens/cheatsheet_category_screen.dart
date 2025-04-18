@@ -1,4 +1,3 @@
-// cheatsheet_category_screen.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -46,30 +45,60 @@ class _CheatSheetCategoryScreenState extends State<CheatSheetCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Catégories de fiches")),
+      appBar: AppBar(
+        backgroundColor: Colors.blue, 
+        title: const Text(
+          "Catégories de fiches",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                final category = categories[index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: ListTile(
-                    title: Text(category),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => CheatSheetFlashcardScreen(category: category),
-                        ),
-                      );
-                    },
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text("Chargement des catégories..."),
+                ],
+              ),
+            )
+          : categories.isEmpty
+              ? const Center(
+                  child: Text(
+                    "Aucune catégorie disponible",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
-                );
-              },
-            ),
+                )
+              : ListView.builder(
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    final category = categories[index];
+                    return Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      elevation: 4, // Shadow for depth
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Rounded corners
+                      ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(16), // Add padding inside each ListTile
+                        title: Text(
+                          category,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => CheatSheetFlashcardScreen(category: category),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
     );
   }
 }

@@ -13,7 +13,7 @@ import 'cheatsheet_screen.dart';
 import 'package:frontend/screens/quiz_session_screen.dart' as session;
 import 'package:frontend/screens/category_quiz_screen.dart' as category;
 
-import 'article_list_screen.dart';  // Import ArticleListScreen
+import 'article_list_screen.dart'; 
 
 import '../main.dart';
 
@@ -109,11 +109,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.article),
-            tooltip: "Articles de sécurité",  // Add tooltip for articles
+            tooltip: "Articles de sécurité", 
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => ArticleListScreen()),  // Navigate to the Article list screen
+                MaterialPageRoute(builder: (_) => ArticleListScreen()), 
               );
             },
           ),
@@ -180,88 +180,86 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
         ],
       ),
-      body: BlocBuilder<QuizBloc, QuizState>(
-        builder: (context, state) {
-          if (state is QuizLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is QuizLoaded) {
-            final allCategories = state.quizzes.map((q) => q.categorie).toSet().toList()..sort();
+      body: BlocBuilder<QuizBloc, QuizState>(builder: (context, state) {
+        if (state is QuizLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is QuizLoaded) {
+          final allCategories = state.quizzes.map((q) => q.categorie).toSet().toList()..sort();
 
-            final filteredByKeyword = state.quizzes.where((q) {
-              final keyword = searchController.text.toLowerCase();
-              return q.titre.toLowerCase().contains(keyword) ||
-                  q.question.toLowerCase().contains(keyword);
-            }).toList();
+          final filteredByKeyword = state.quizzes.where((q) {
+            final keyword = searchController.text.toLowerCase();
+            return q.titre.toLowerCase().contains(keyword) ||
+                q.question.toLowerCase().contains(keyword);
+          }).toList();
 
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Lottie.asset(
-                    'assets/animations/cyber_welcome.json',
-                    height: 160,
-                    repeat: true,
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Lottie.asset(
+                  'assets/animations/cyber_welcome.json',
+                  height: 160,
+                  repeat: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: TextField(
+                    controller: searchController,
+                    decoration: const InputDecoration(
+                      labelText: 'Rechercher un quiz',
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: TextField(
-                      controller: searchController,
-                      decoration: const InputDecoration(
-                        labelText: 'Rechercher un quiz',
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text(
+                    'Quiz : ${state.quizzes.length}  |  Catégories : ${allCategories.length}',
+                    style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                  ),
+                ),
+                ...allCategories.map((cat) {
+                  final quizzesForCategory = filteredByKeyword
+                      .where((q) => q.categorie == cat)
+                      .toList();
+
+                  if (quizzesForCategory.isEmpty) return const SizedBox();
+
+                  return Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: ListTile(
+                      leading: Icon(getCategoryIcon(cat)),
+                      title: Text(
+                        '$cat (${quizzesForCategory.length})',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      onChanged: (value) {
-                        setState(() {});
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => category.CategoryQuizScreen(
+                              category: cat,
+                              quizzes: quizzesForCategory,
+                            ),
+                          ),
+                        );
                       },
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text(
-                      'Quiz : ${state.quizzes.length}  |  Catégories : ${allCategories.length}',
-                      style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
-                    ),
-                  ),
-                  ...allCategories.map((cat) {
-                    final quizzesForCategory = filteredByKeyword
-                        .where((q) => q.categorie == cat)
-                        .toList();
-
-                    if (quizzesForCategory.isEmpty) return const SizedBox();
-
-                    return Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      child: ListTile(
-                        leading: Icon(getCategoryIcon(cat)),
-                        title: Text(
-                          '$cat (${quizzesForCategory.length})',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => category.CategoryQuizScreen(
-                                category: cat,
-                                quizzes: quizzesForCategory,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  }).toList(),
-                ],
-              ),
-            );
-          } else if (state is QuizError) {
-            return Center(child: Text("Erreur: ${state.message}"));
-          } else {
-            return const Center(child: Text("Aucun quiz disponible."));
-          }
-        },
-      ),
+                  );
+                }).toList(),
+              ],
+            ),
+          );
+        } else if (state is QuizError) {
+          return Center(child: Text("Erreur: ${state.message}"));
+        } else {
+          return const Center(child: Text("Aucun quiz disponible."));
+        }
+      }),
       floatingActionButton: BlocBuilder<QuizBloc, QuizState>(
         builder: (context, state) {
           if (state is QuizLoaded && state.quizzes.isNotEmpty) {

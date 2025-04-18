@@ -36,13 +36,20 @@ class _CheatSheetFlashcardScreenState extends State<CheatSheetFlashcardScreen> {
     final fiche = widget.fiches[currentIndex];
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.category)),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: FlipCard(
+      appBar: AppBar(
+        backgroundColor: Colors.blue, // Custom background color
+        title: Text(
+          widget.category,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Flip card container
+            FlipCard(
               direction: FlipDirection.HORIZONTAL,
               front: Card(
                 elevation: 6,
@@ -86,25 +93,36 @@ class _CheatSheetFlashcardScreenState extends State<CheatSheetFlashcardScreen> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back),
-                tooltip: "Précédent",
-                onPressed: previousCard,
-              ),
-              Text("${currentIndex + 1} / ${widget.fiches.length}"),
-              IconButton(
-                icon: const Icon(Icons.arrow_forward),
-                tooltip: "Suivant",
-                onPressed: nextCard,
-              ),
-            ],
-          ),
-        ],
+            const SizedBox(height: 24),
+            // Navigation buttons (previous, next)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  tooltip: "Précédent",
+                  onPressed: previousCard,
+                  iconSize: 30,
+                  color: Colors.blue,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    "${currentIndex + 1} / ${widget.fiches.length}",
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.arrow_forward),
+                  tooltip: "Suivant",
+                  onPressed: nextCard,
+                  iconSize: 30,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

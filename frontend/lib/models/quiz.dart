@@ -20,26 +20,27 @@ class Quiz {
   factory Quiz.fromJson(Map<String, dynamic> json) {
     List<String> parsedChoix = [];
 
-    // Gestion de différents formats de données pour "choix"
+    // Ensure 'choix' is a valid format before trying to decode or convert
     if (json['choix'] is String) {
       try {
         final decoded = jsonDecode(json['choix']);
         parsedChoix = List<String>.from(decoded);
       } catch (e) {
-        print(" Erreur lors du parsing JSON de choix : ${json['choix']}");
-        parsedChoix = [];
+        print("Erreur lors du parsing JSON de choix : ${json['choix']}");
+        parsedChoix = []; // fallback to an empty list
       }
     } else if (json['choix'] is List) {
       parsedChoix = List<String>.from(json['choix']);
     }
 
+    // Extract values from JSON with fallback defaults
     return Quiz(
-      id: json['id'],
-      titre: json['titre'],
-      question: json['question'],
+      id: json['id'] ?? 0,  // Fallback to 0 if id is missing
+      titre: json['titre'] ?? 'Titre non défini',  // Provide a default title if missing
+      question: json['question'] ?? 'Question non définie',  // Provide a default question if missing
       choix: parsedChoix,
-      bonneReponse: json['bonneReponse'] ?? json['bonne_reponse'] ?? '',
-      categorie: json['categorie'] ?? 'Autre',
+      bonneReponse: json['bonneReponse'] ?? json['bonne_reponse'] ?? 'Aucune réponse', // Fallback to a default answer
+      categorie: json['categorie'] ?? 'Autre',  // Default to 'Autre' if no category is found
     );
   }
 }

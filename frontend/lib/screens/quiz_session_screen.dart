@@ -133,6 +133,7 @@ class _QuizSessionScreenState extends State<QuizSessionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Quiz"),
+        backgroundColor: Colors.blue, // Custom AppBar color
         automaticallyImplyLeading: true,
       ),
       body: Padding(
@@ -140,11 +141,14 @@ class _QuizSessionScreenState extends State<QuizSessionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Question number display
             Text(
               'Question ${currentIndex + 1}/${widget.quizzes.length}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
+
+            // Timer and progress bar
             LinearProgressIndicator(
               value: remainingTime / 10,
               minHeight: 10,
@@ -160,18 +164,22 @@ class _QuizSessionScreenState extends State<QuizSessionScreen> {
               ),
             ),
             const SizedBox(height: 12),
+
+            // Question text
             Text(quiz.question, style: const TextStyle(fontSize: 18)),
             const SizedBox(height: 24),
+
+            // Answer choices
             ...quiz.choix.map((c) {
               final isCorrect = c == quiz.bonneReponse;
               final isSelected = c == selectedChoice;
 
               Color getBackgroundColor() {
-                if (!answered) return Colors.grey[300]!;
-                if (isSelected && isCorrect) return Colors.green;
-                if (isSelected && !isCorrect) return Colors.red;
-                if (isCorrect) return Colors.green;
-                return Colors.grey[300]!;
+                if (!answered) return Colors.grey[300]!; // Default color if not answered
+                if (isSelected && isCorrect) return Colors.green; // Correct answer
+                if (isSelected && !isCorrect) return Colors.red; // Incorrect answer
+                if (isCorrect) return Colors.green; // Correct answer without selection
+                return Colors.grey[300]!; // Default color
               }
 
               Icon? getFeedbackIcon() {
@@ -189,7 +197,7 @@ class _QuizSessionScreenState extends State<QuizSessionScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: getBackgroundColor(),
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50), // Full width buttons
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
@@ -203,12 +211,14 @@ class _QuizSessionScreenState extends State<QuizSessionScreen> {
                           style: const TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
-                      if (getFeedbackIcon() != null) getFeedbackIcon()!,
+                      if (getFeedbackIcon() != null) getFeedbackIcon()!, // Show the feedback icon
                     ],
                   ),
                 ),
               );
             }).toList(),
+
+            // Button to exit quiz
             const SizedBox(height: 32),
             Center(
               child: ElevatedButton.icon(

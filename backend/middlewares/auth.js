@@ -1,24 +1,31 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
+require('dotenv').config(); // For environment variables
 
-function verifyToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
+module.exports = function verifyToken(req, res, next) {
+   // Check for Authorization header
+   const authHeader = req.headers['authorization'];
+   if (!authHeader) {
+     return res.status(401).json({ message: 'No token provided' });
+   }
 
-  if (!authHeader) {
-    return res.status(403).json({ error: 'Token manquant' });
-  }
+   // Validate header format
+   const parts = authHeader.split(' ');
+   if (parts.length !== 2 || parts[0] !== 'Bearer') {
+     return res.status(401).json({ message: 'Token format is invalid' });
+   }
 
-  const token = authHeader.split(' ')[1]; 
+   const token = parts[1];
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      console.error(" Token invalide :", err);
-      return res.status(403).json({ error: 'Token invalide' });
-    }
-
-    req.user = user; // { id, email, is_admin, iat, exp }
-    next();
-  });
-}
-
-module.exports = verifyToken;
+   try {
+     // Use environment variable for secret
+     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+     req.user = decoded;
+     next();
+   } catch (err) {
+     // More specific error handling
+     if (err.name === 'TokenExpiredError') {
+       return res.status(401).json({ message: 'Token has expired' });
+     }
+     return res.status(401).json({ message: 'Invalid token' });
+   }
+};

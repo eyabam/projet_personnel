@@ -44,11 +44,17 @@ class CategoryQuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue, 
         title: Row(
           children: [
-            Icon(getCategoryIcon(category)),
+            Icon(getCategoryIcon(category), size: 28),
             const SizedBox(width: 8),
-            Expanded(child: Text("Catégorie : $category")),
+            Expanded(
+              child: Text(
+                "Catégorie : $category",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
         leading: IconButton(
@@ -57,22 +63,46 @@ class CategoryQuizScreen extends StatelessWidget {
         ),
       ),
       body: quizzes.isEmpty
-          ? const Center(child: Text("Aucun quiz disponible pour cette catégorie."))
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.error_outline, size: 50, color: Colors.grey),
+                  const SizedBox(height: 16),
+                  Text(
+                    "Aucun quiz disponible pour cette catégorie.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ],
+              ),
+            )
           : ListView.builder(
               itemCount: quizzes.length,
               itemBuilder: (context, index) {
                 final quiz = quizzes[index];
-                return ListTile(
-                  title: Text(quiz.titre),
-                  subtitle: Text(quiz.question),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => QuizDetailScreen(quiz: quiz),
-                      ),
-                    );
-                  },
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    title: Text(
+                      quiz.titre,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(quiz.question),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => QuizDetailScreen(quiz: quiz),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),
@@ -80,6 +110,7 @@ class CategoryQuizScreen extends StatelessWidget {
           ? FloatingActionButton.extended(
               icon: const Icon(Icons.play_arrow),
               label: const Text("Démarrer"),
+              backgroundColor: Colors.blue,
               onPressed: () {
                 Navigator.push(
                   context,

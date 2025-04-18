@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; 
+import 'dart:convert';  
+
 class AdminQuizFormScreen extends StatefulWidget {
   const AdminQuizFormScreen({super.key});
 
@@ -9,30 +13,30 @@ class _AdminQuizFormScreenState extends State<AdminQuizFormScreen> {
   final _formKey = GlobalKey<FormState>();
   String _title = '';
   String _question = '';
-  List<String> _choices = ['', '', '', ''];
   String _correctAnswer = '';
+  List<String> _choices = [];
 
   Future<void> createQuiz() async {
     final response = await http.post(
-      Uri.parse('your_api_url/admin/quizzes'), // Your backend API for quiz creation
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      Uri.parse('http://localhost:3000/api/admin/quizzes'),
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'title': _title,
+        'titre': _title,
         'question': _question,
-        'choices': _choices,
-        'correctAnswer': _correctAnswer,
+        'choix': _choices,
+        'bonne_reponse': _correctAnswer,
       }),
     );
 
     if (response.statusCode == 201) {
-      // Successfully created the quiz
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quiz created successfully")));
-      Navigator.pop(context); // Navigate back after success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Quiz créé avec succès")),
+      );
+      Navigator.pop(context);  // Go back after success
     } else {
-      // Handle error in quiz creation
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to create quiz")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Échec de la création du quiz")),
+      );
     }
   }
 
@@ -46,9 +50,9 @@ class _AdminQuizFormScreenState extends State<AdminQuizFormScreen> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Quiz Title'),
+                decoration: const InputDecoration(labelText: 'Titre du quiz'),
                 onChanged: (value) {
                   setState(() {
                     _title = value;
@@ -56,7 +60,7 @@ class _AdminQuizFormScreenState extends State<AdminQuizFormScreen> {
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter quiz title';
+                    return 'Veuillez entrer un titre';
                   }
                   return null;
                 },
@@ -70,20 +74,49 @@ class _AdminQuizFormScreenState extends State<AdminQuizFormScreen> {
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the question';
+                    return 'Veuillez entrer une question';
                   }
                   return null;
                 },
               ),
-              // Add input fields for choices and correct answer here...
-
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    createQuiz(); // Call the function to create the quiz
-                  }
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Réponse correcte'),
+                onChanged: (value) {
+                  setState(() {
+                    _correctAnswer = value;
+                  });
                 },
-                child: const Text('Create Quiz'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Veuillez entrer la réponse correcte';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Choix (séparez par une virgule)'),
+                onChanged: (value) {
+                  setState(() {
+                    _choices = value.split(',');
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Veuillez entrer les choix';
+                  }
+                  return null;
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      createQuiz();
+                    }
+                  },
+                  child: const Text('Créer le quiz'),
+                ),
               ),
             ],
           ),

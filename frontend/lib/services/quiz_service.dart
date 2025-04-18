@@ -8,7 +8,19 @@ class QuizService {
   final String baseUrl = 'http://localhost:3000/api';
 
   Future<List<Quiz>> fetchQuizzes() async {
-    final response = await http.get(Uri.parse('$baseUrl/quizzes'));
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null) {
+      throw Exception('Token JWT non trouvé');
+    }
+
+    final response = await http.get(
+      Uri.parse('$baseUrl/quizzes'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
@@ -34,8 +46,9 @@ class QuizService {
     );
 
     if (response.statusCode == 200) {
-      List<dynamic> body = jsonDecode(response.body);
-      return body.map((score) => Score.fromJson(score)).toList();
+      final Map<String, dynamic> responseBody = jsonDecode(response.body);
+      final List<dynamic> scoresData = responseBody['scores'];
+      return scoresData.map((score) => Score.fromJson(score)).toList();
     } else {
       throw Exception('Erreur lors du chargement des scores');
     }

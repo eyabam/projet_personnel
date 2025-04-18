@@ -13,13 +13,14 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<LoadQuizzes>(_onLoadQuizzes);
   }
 
-  void _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
+  Future<void> _onLoadQuizzes(LoadQuizzes event, Emitter<QuizState> emit) async {
     emit(QuizLoading());
     try {
       final quizzes = await quizService.fetchQuizzes();
       List<Score> scores = [];
+      
       try {
-        scores = await quizService.fetchScores(); // On essaye de charger les scores
+        scores = await quizService.fetchScores(); // Try to load scores
       } catch (e) {
         print("⚠️ Erreur chargement scores : $e");
       }
