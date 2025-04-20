@@ -24,6 +24,8 @@ dependencies:
   url_launcher: ^6.0.10
   percent_indicator: ^4.2.2
   equatable: ^2.0.5
+  flutter_js: ^0.8.2
+
 
 
 

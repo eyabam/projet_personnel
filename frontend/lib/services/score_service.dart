@@ -30,10 +30,50 @@ class ScoreService {
       print("Récupération des scores - Statut: ${response.statusCode}");
       
       if (response.statusCode == 200) {
-        final Map<String, dynamic> responseBody = jsonDecode(response.body);
-        final List<dynamic> scoresData = responseBody['scores'];
+        print("Structure de la réponse: ${response.body}");
         
-        final scores = scoresData.map((e) => Score.fromJson(e)).toList();
+        final dynamic responseData = jsonDecode(response.body);
+        print("Type de réponse: ${responseData.runtimeType}");
+        
+        List<dynamic> scoresData;
+        
+        if (responseData is Map<String, dynamic>) {
+          // Si la réponse est un objet avec une clé 'scores'
+          if (responseData.containsKey('scores')) {
+            var scores = responseData['scores'];
+            if (scores is List) {
+              scoresData = scores;
+            } else {
+              print("Format inattendu pour 'scores': ${scores.runtimeType}");
+              throw Exception("Format de 'scores' inattendu");
+            }
+          } else {
+            // Essayons de trouver une clé qui contient une liste
+            var listKey = responseData.keys.firstWhere(
+              (key) => responseData[key] is List,
+              orElse: () => '',
+            );
+            
+            if (listKey.isNotEmpty) {
+              scoresData = responseData[listKey] as List<dynamic>;
+              print("Utilisation de la clé '$listKey' comme source de scores");
+            } else {
+              print("Aucune liste trouvée dans la réponse: $responseData");
+              throw Exception('Format de réponse inattendu');
+            }
+          }
+        } else if (responseData is List) {
+          // Si la réponse est directement une liste
+          scoresData = responseData;
+        } else {
+          print("Type de données inattendu: ${responseData.runtimeType}");
+          throw Exception('Type de données inattendu');
+        }
+        
+        print("Type de scoresData: ${scoresData.runtimeType}");
+        print("Premier élément: ${scoresData.isNotEmpty ? scoresData.first : 'aucun élément'}");
+        
+        final scores = scoresData.map((e) => Score.fromJson(e as Map<String, dynamic>)).toList();
         print("Nombre de scores récupérés: ${scores.length}");
         
         return scores;
@@ -42,7 +82,7 @@ class ScoreService {
         throw Exception('Failed to load scores: ${response.statusCode}');
       }
     } catch (e) {
-      print("Exception lors de la récupération des scores: $e");
+      print("⚠️ Erreur chargement scores : $e");
       throw Exception('Network error: $e');
     }
   }

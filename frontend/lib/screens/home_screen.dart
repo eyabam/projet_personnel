@@ -6,12 +6,13 @@ import 'package:lottie/lottie.dart';
 import '../bloc/quiz_bloc.dart';
 import '../models/user.dart';
 import 'score_history_screen.dart';
-import 'admin_quiz_form_screen.dart';
+
 import 'profile_screen.dart';
 import 'dashboard_screen.dart';
 import 'cheatsheet_screen.dart';
 import 'package:frontend/screens/quiz_session_screen.dart' as session;
 import 'package:frontend/screens/category_quiz_screen.dart' as category;
+import 'admin/create_quiz_screen.dart';
 
 import 'article_list_screen.dart'; 
 
@@ -173,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const AdminQuizFormScreen(),
+                    builder: (_) => const CreateQuizScreen(),
                   ),
                 );
               },

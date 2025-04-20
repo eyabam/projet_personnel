@@ -1,0 +1,54 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"flutter/ephemeral/.plugin_symlinks/flutter_js/linux/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 42,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 43,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Runtime",
+			"type" : "code"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Runtime",
+			"destination" : "/home/aya/projet_personnel/build/bundle/lib",
+			"paths" : 
+			[
+				"flutter/ephemeral/.plugin_symlinks/flutter_js/linux/shared/libquickjs_c_bridge_plugin.so"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "plugins/flutter_js",
+		"source" : "flutter/ephemeral/.plugin_symlinks/flutter_js/linux"
+	}
+}

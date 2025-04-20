@@ -18,6 +18,13 @@
 /home/aya/projet_personnel/build/runner/CMakeFiles/install.dir
 /home/aya/projet_personnel/build/runner/CMakeFiles/install/local.dir
 /home/aya/projet_personnel/build/runner/CMakeFiles/install/strip.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/edit_cache.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/rebuild_cache.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/list_install_components.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/install.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/install/local.dir
+/home/aya/projet_personnel/build/plugins/flutter_js/CMakeFiles/install/strip.dir
 /home/aya/projet_personnel/build/plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
 /home/aya/projet_personnel/build/plugins/url_launcher_linux/CMakeFiles/edit_cache.dir
 /home/aya/projet_personnel/build/plugins/url_launcher_linux/CMakeFiles/rebuild_cache.dir

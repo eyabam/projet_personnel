@@ -1,0 +1,30 @@
+[
+  {
+    "name": "controllers",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "authController",
+        "children": [
+          {
+            "type": "function",
+            "name": "login",
+            "static": true,
+            "location": "backend/controllers/authController.js:88"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "POST /api/login"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+[
+  {
+    "caller": "POST /api/scores",
+    "callee": "controllers/scoreController"
+  }
+]

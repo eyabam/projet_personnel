@@ -5,28 +5,28 @@ import '../models/quiz.dart';
 import '../models/score.dart';
 
 class QuizService {
-  final String baseUrl = 'http://localhost:3000/api';
+  final String baseUrl = 'http://localhost:3000';
 
   Future<List<Quiz>> fetchQuizzes() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
 
     if (token == null) {
-      throw Exception('Token JWT non trouvé');
+      throw Exception('Token manquant. Veuillez vous reconnecter.');
     }
 
     final response = await http.get(
-      Uri.parse('$baseUrl/quizzes'),
+      Uri.parse('$baseUrl/api/quizzes'),
       headers: {
         'Authorization': 'Bearer $token',
       },
     );
 
     if (response.statusCode == 200) {
-      List<dynamic> body = jsonDecode(response.body);
-      return body.map((quiz) => Quiz.fromJson(quiz)).toList();
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((item) => Quiz.fromJson(item)).toList(); // 🔥 ici on transforme en objets Quiz
     } else {
-      throw Exception('Erreur lors du chargement des quizzes');
+      throw Exception('Erreur lors de la récupération des quizzes');
     }
   }
 
@@ -35,22 +35,21 @@ class QuizService {
     final token = prefs.getString('token');
 
     if (token == null) {
-      throw Exception('Token JWT non trouvé');
+      throw Exception('Token manquant. Veuillez vous reconnecter.');
     }
 
     final response = await http.get(
-      Uri.parse('$baseUrl/scores'),
+      Uri.parse('$baseUrl/api/scores'),
       headers: {
         'Authorization': 'Bearer $token',
       },
     );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> responseBody = jsonDecode(response.body);
-      final List<dynamic> scoresData = responseBody['scores'];
-      return scoresData.map((score) => Score.fromJson(score)).toList();
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((item) => Score.fromJson(item)).toList(); // 🔥 ici on transforme en objets Score
     } else {
-      throw Exception('Erreur lors du chargement des scores');
+      throw Exception('Erreur lors de la récupération des scores');
     }
   }
 }

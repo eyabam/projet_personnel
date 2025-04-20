@@ -1,0 +1,30 @@
+[
+  {
+    "name": "controllers",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "scoreController",
+        "children": [
+          {
+            "type": "function",
+            "name": "getUserScores",
+            "static": true,
+            "location": "backend/controllers/scoreController.js:33"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /api/scores"
+      }
+    ]
+  }
+]

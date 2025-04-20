@@ -1,0 +1,7 @@
+[
+  {
+    "route": "POST /api/scores",
+    "parameters": "(titre,categorie,score,total)",
+    "status": 201
+  }
+]

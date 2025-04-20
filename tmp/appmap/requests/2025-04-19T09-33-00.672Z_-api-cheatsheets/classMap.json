@@ -1,0 +1,30 @@
+[
+  {
+    "name": "controllers",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "cheatsheetController",
+        "children": [
+          {
+            "type": "function",
+            "name": "getAllCheatsheets",
+            "static": true,
+            "location": "backend/controllers/cheatsheetController.js:3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /api/cheatsheets"
+      }
+    ]
+  }
+]

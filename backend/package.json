@@ -17,5 +17,10 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.0",
     "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@appland/appmap": "^3.188.4",
+    "@appland/appmap-agent-js": "^9.4.3",
+    "appmap-node": "^2.24.3"
   }
 }

@@ -1,0 +1,7 @@
+[
+  {
+    "route": "POST /api/login",
+    "parameters": "(email,password)",
+    "status": 200
+  }
+]

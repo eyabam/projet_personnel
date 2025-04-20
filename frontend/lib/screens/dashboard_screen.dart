@@ -14,7 +14,7 @@ import 'score_history_screen.dart';
 import 'profile_screen.dart';
 import 'cheatsheet_screen.dart';
 import 'article_list_screen.dart';
-import 'admin_quiz_form_screen.dart';
+import 'admin/create_quiz_screen.dart';
 import 'package:frontend/screens/quiz_session_screen.dart' as session;
 import 'package:frontend/screens/category_quiz_screen.dart' as category;
 
@@ -136,100 +136,98 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
             },
           ),
           PopupMenuButton<String>(
-            tooltip: "Menu",
-            onSelected: (value) async {
-              switch (value) {
-                case 'cheatsheet':
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const CheatSheetScreen()),
-                  );
-                  break;
-                case 'articles':
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => ArticleListScreen()),
-                  );
-                  break;
-                case 'profile':
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const ProfileScreen()),
-                  );
-                  break;
-                case 'scores':
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const ScoreHistoryScreen()),
-                  );
-                  break;
-                case 'admin':
-                  if (isAdmin) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const AdminQuizFormScreen()),
-                    );
-                  } else {
-                    _showNotAdminMessage(context); // Custom message to non-admin users
-                  }
-                  break;
-                case 'logout':
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.remove('token');
-                  if (context.mounted) {
-                    Navigator.pushReplacementNamed(context, '/login');
-                  }
-                  break;
-              }
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                const PopupMenuItem<String>(
-                  value: 'cheatsheet',
-                  child: ListTile(
-                    leading: Icon(Icons.menu_book),
-                    title: Text('Fiches de révision'),
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'articles',
-                  child: ListTile(
-                    leading: Icon(Icons.article),
-                    title: Text('Articles de sécurité'),
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'profile',
-                  child: ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text('Mon profil'),
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'scores',
-                  child: ListTile(
-                    leading: Icon(Icons.history),
-                    title: Text('Historique des scores'),
-                  ),
-                ),
-                if (isAdmin)
+              tooltip: "Menu",
+              onSelected: (value) async {
+                switch (value) {
+                  case 'cheatsheet':
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const CheatSheetScreen()));
+                    break;
+                  case 'articles':
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ArticleListScreen()));
+                    break;
+                  case 'profile':
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+                    break;
+                  case 'scores':
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ScoreHistoryScreen()));
+                    break;
+                  case 'create_quiz':
+                    Navigator.pushNamed(context, '/create_quiz');
+                    break;
+                  case 'logout':
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.remove('token');
+                    if (context.mounted) {
+                      Navigator.pushReplacementNamed(context, '/login');
+                    }
+                    break;
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return [
                   const PopupMenuItem<String>(
-                    value: 'admin',
+                    value: 'cheatsheet',
                     child: ListTile(
-                      leading: Icon(Icons.admin_panel_settings),
-                      title: Text('Créer un quiz (admin)'),
+                      leading: Icon(Icons.menu_book),
+                      title: Text('Fiches de révision'),
                     ),
                   ),
-                const PopupMenuItem<String>(
-                  value: 'logout',
-                  child: ListTile(
-                    leading: Icon(Icons.logout),
-                    title: Text('Déconnexion'),
+                  const PopupMenuItem<String>(
+                    value: 'articles',
+                    child: ListTile(
+                      leading: Icon(Icons.article),
+                      title: Text('Articles de sécurité'),
+                    ),
                   ),
-                ),
-              ];
-            },
-          ),
+                  const PopupMenuItem<String>(
+                    value: 'profile',
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text('Mon profil'),
+                    ),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'scores',
+                    child: ListTile(
+                      leading: Icon(Icons.history),
+                      title: Text('Historique des scores'),
+                    ),
+                  ),
+                  if (isAdmin) ...[
+                    const PopupMenuDivider(),
+                    const PopupMenuItem<String>(
+                      value: 'admin_quiz_list',
+                      child: ListTile(
+                        leading: Icon(Icons.list_alt),
+                        title: Text('Gérer les Quiz'),
+                      ),
+                    ),
+                    const PopupMenuItem<String>(
+                      value: 'admin_user_list',
+                      child: ListTile(
+                        leading: Icon(Icons.group),
+                        title: Text('Gérer les Utilisateurs'),
+                      ),
+                    ),
+                    const PopupMenuItem<String>(
+                      value: 'create_quiz',
+                      child: ListTile(
+                        leading: Icon(Icons.add),
+                        title: Text('Créer un Quiz'),
+                      ),
+                    ),
+                  ],
+                  const PopupMenuDivider(),
+                  const PopupMenuItem<String>(
+                    value: 'logout',
+                    child: ListTile(
+                      leading: Icon(Icons.logout),
+                      title: Text('Déconnexion'),
+                    ),
+                  ),
+                ];
+              },
+            ),
         ],
         bottom: TabBar(
           controller: _tabController,
@@ -427,7 +425,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const AdminQuizFormScreen(),
+                        builder: (_) => const CreateQuizScreen(),
                       ),
                     );
                   },

@@ -1,0 +1,11 @@
+{
+  "name": "projet_personnel",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "node backend/app.js",
+    "frontend": "cd frontend && flutter run"
+  }
+}

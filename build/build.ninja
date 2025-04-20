@@ -208,13 +208,13 @@ build /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_lin
 #############################################
 # Order-only phony target for frontend
 
-build cmake_object_order_depends_target_frontend: phony || cmake_object_order_depends_target_url_launcher_linux_plugin flutter/flutter_assemble
+build cmake_object_order_depends_target_frontend: phony || cmake_object_order_depends_target_flutter_js_plugin cmake_object_order_depends_target_url_launcher_linux_plugin flutter/flutter_assemble
 
 build runner/CMakeFiles/frontend.dir/main.cc.o: CXX_COMPILER__frontend_Debug /home/aya/projet_personnel/frontend/linux/runner/main.cc || cmake_object_order_depends_target_frontend
   DEFINES = -DAPPLICATION_ID=\"com.example.frontend\"
   DEP_FILE = runner/CMakeFiles/frontend.dir/main.cc.o.d
   FLAGS = -g -Wall -Werror -pthread
-  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
+  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/include -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
   OBJECT_DIR = runner/CMakeFiles/frontend.dir
   OBJECT_FILE_DIR = runner/CMakeFiles/frontend.dir
 
@@ -222,7 +222,7 @@ build runner/CMakeFiles/frontend.dir/my_application.cc.o: CXX_COMPILER__frontend
   DEFINES = -DAPPLICATION_ID=\"com.example.frontend\"
   DEP_FILE = runner/CMakeFiles/frontend.dir/my_application.cc.o.d
   FLAGS = -g -Wall -Werror -pthread
-  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
+  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/include -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
   OBJECT_DIR = runner/CMakeFiles/frontend.dir
   OBJECT_FILE_DIR = runner/CMakeFiles/frontend.dir
 
@@ -230,7 +230,7 @@ build runner/CMakeFiles/frontend.dir/__/flutter/generated_plugin_registrant.cc.o
   DEFINES = -DAPPLICATION_ID=\"com.example.frontend\"
   DEP_FILE = runner/CMakeFiles/frontend.dir/__/flutter/generated_plugin_registrant.cc.o.d
   FLAGS = -g -Wall -Werror -pthread
-  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
+  INCLUDES = -I/home/aya/projet_personnel/frontend/linux -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/include -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
   OBJECT_DIR = runner/CMakeFiles/frontend.dir
   OBJECT_FILE_DIR = runner/CMakeFiles/frontend.dir/__/flutter
 
@@ -242,9 +242,9 @@ build runner/CMakeFiles/frontend.dir/__/flutter/generated_plugin_registrant.cc.o
 #############################################
 # Link the executable intermediates_do_not_run/frontend
 
-build intermediates_do_not_run/frontend: CXX_EXECUTABLE_LINKER__frontend_Debug runner/CMakeFiles/frontend.dir/main.cc.o runner/CMakeFiles/frontend.dir/my_application.cc.o runner/CMakeFiles/frontend.dir/__/flutter/generated_plugin_registrant.cc.o | plugins/url_launcher_linux/liburl_launcher_linux_plugin.so /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
+build intermediates_do_not_run/frontend: CXX_EXECUTABLE_LINKER__frontend_Debug runner/CMakeFiles/frontend.dir/main.cc.o runner/CMakeFiles/frontend.dir/my_application.cc.o runner/CMakeFiles/frontend.dir/__/flutter/generated_plugin_registrant.cc.o | plugins/flutter_js/libflutter_js_plugin.so plugins/url_launcher_linux/liburl_launcher_linux_plugin.so /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble plugins/flutter_js/libflutter_js_plugin.so plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
   FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,/home/aya/projet_personnel/build/plugins/url_launcher_linux:/home/aya/projet_personnel/frontend/linux/flutter/ephemeral:  plugins/url_launcher_linux/liburl_launcher_linux_plugin.so  /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+  LINK_LIBRARIES = -Wl,-rpath,/home/aya/projet_personnel/build/plugins/flutter_js:/home/aya/projet_personnel/build/plugins/url_launcher_linux:/home/aya/projet_personnel/frontend/linux/flutter/ephemeral:  plugins/flutter_js/libflutter_js_plugin.so  plugins/url_launcher_linux/liburl_launcher_linux_plugin.so  /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
   OBJECT_DIR = runner/CMakeFiles/frontend.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -315,6 +315,112 @@ build runner/CMakeFiles/install/strip.util: CUSTOM_COMMAND runner/all
   restat = 1
 
 build runner/install/strip: phony runner/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/aya/projet_personnel/frontend/linux/flutter/generated_plugins.cmake
+# =============================================================================
+
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target flutter_js_plugin
+
+
+#############################################
+# Order-only phony target for flutter_js_plugin
+
+build cmake_object_order_depends_target_flutter_js_plugin: phony || flutter/flutter_assemble
+
+build plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir/flutter_js_plugin.cc.o: CXX_COMPILER__flutter_js_plugin_Debug /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/flutter_js_plugin.cc || cmake_object_order_depends_target_flutter_js_plugin
+  DEFINES = -DFLUTTER_PLUGIN_IMPL -Dflutter_js_plugin_EXPORTS
+  DEP_FILE = plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir/flutter_js_plugin.cc.o.d
+  FLAGS = -std=c++17 -DANDROID_STL=c++_static -DDEBUGGER_SERVER_PORT= -g -fPIC -fvisibility=hidden -Wall -Werror -pthread
+  INCLUDES = -I/home/aya/projet_personnel/frontend/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/cairo -isystem /usr/include/pango-1.0 -isystem /usr/include/harfbuzz -isystem /usr/include/fribidi -isystem /usr/include/atk-1.0 -isystem /usr/include/pixman-1 -isystem /usr/include/uuid -isystem /usr/include/freetype2 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include
+  OBJECT_DIR = plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir
+  OBJECT_FILE_DIR = plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir
+
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target flutter_js_plugin
+
+
+#############################################
+# Link the shared library plugins/flutter_js/libflutter_js_plugin.so
+
+build plugins/flutter_js/libflutter_js_plugin.so: CXX_SHARED_LIBRARY_LINKER__flutter_js_plugin_Debug plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir/flutter_js_plugin.cc.o | /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble
+  LANGUAGE_COMPILE_FLAGS = -std=c++17 -DANDROID_STL=c++_static -DDEBUGGER_SERVER_PORT= -g
+  LINK_LIBRARIES = -Wl,-rpath,/home/aya/projet_personnel/frontend/linux/flutter/ephemeral  /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+  OBJECT_DIR = plugins/flutter_js/CMakeFiles/flutter_js_plugin.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libflutter_js_plugin.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = plugins/flutter_js/libflutter_js_plugin.so
+  TARGET_PDB = flutter_js_plugin.so.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build plugins/flutter_js/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/aya/projet_personnel/build/plugins/flutter_js && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build plugins/flutter_js/edit_cache: phony plugins/flutter_js/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build plugins/flutter_js/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/aya/projet_personnel/build/plugins/flutter_js && /usr/bin/cmake --regenerate-during-build -S/home/aya/projet_personnel/frontend/linux -B/home/aya/projet_personnel/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build plugins/flutter_js/rebuild_cache: phony plugins/flutter_js/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build plugins/flutter_js/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build plugins/flutter_js/CMakeFiles/install.util: CUSTOM_COMMAND plugins/flutter_js/all
+  COMMAND = cd /home/aya/projet_personnel/build/plugins/flutter_js && /usr/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build plugins/flutter_js/install: phony plugins/flutter_js/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build plugins/flutter_js/CMakeFiles/install/local.util: CUSTOM_COMMAND plugins/flutter_js/all
+  COMMAND = cd /home/aya/projet_personnel/build/plugins/flutter_js && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build plugins/flutter_js/install/local: phony plugins/flutter_js/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build plugins/flutter_js/CMakeFiles/install/strip.util: CUSTOM_COMMAND plugins/flutter_js/all
+  COMMAND = cd /home/aya/projet_personnel/build/plugins/flutter_js && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build plugins/flutter_js/install/strip: phony plugins/flutter_js/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -435,7 +541,11 @@ build plugins/url_launcher_linux/install/strip: phony plugins/url_launcher_linux
 
 build flutter_assemble: phony flutter/flutter_assemble
 
+build flutter_js_plugin: phony plugins/flutter_js/libflutter_js_plugin.so
+
 build frontend: phony intermediates_do_not_run/frontend
+
+build libflutter_js_plugin.so: phony plugins/flutter_js/libflutter_js_plugin.so
 
 build liburl_launcher_linux_plugin.so: phony plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
 
@@ -449,7 +559,7 @@ build url_launcher_linux_plugin: phony plugins/url_launcher_linux/liburl_launche
 #############################################
 # Folder: /home/aya/projet_personnel/build
 
-build all: phony flutter/all runner/all plugins/url_launcher_linux/all
+build all: phony flutter/all runner/all plugins/flutter_js/all plugins/url_launcher_linux/all
 
 # =============================================================================
 
@@ -457,6 +567,13 @@ build all: phony flutter/all runner/all plugins/url_launcher_linux/all
 # Folder: /home/aya/projet_personnel/build/flutter
 
 build flutter/all: phony
+
+# =============================================================================
+
+#############################################
+# Folder: /home/aya/projet_personnel/build/plugins/flutter_js
+
+build plugins/flutter_js/all: phony plugins/flutter_js/libflutter_js_plugin.so
 
 # =============================================================================
 
@@ -479,14 +596,14 @@ build runner/all: phony intermediates_do_not_run/frontend
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/aya/projet_personnel/frontend/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/generated_config.cmake /home/aya/projet_personnel/frontend/linux/flutter/generated_plugins.cmake /home/aya/projet_personnel/frontend/linux/runner/CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.22/Modules/FindPackageMessage.cmake /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/aya/projet_personnel/frontend/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/generated_config.cmake /home/aya/projet_personnel/frontend/linux/flutter/generated_plugins.cmake /home/aya/projet_personnel/frontend/linux/runner/CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.22/Modules/FindPackageMessage.cmake /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/aya/projet_personnel/frontend/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/generated_config.cmake /home/aya/projet_personnel/frontend/linux/flutter/generated_plugins.cmake /home/aya/projet_personnel/frontend/linux/runner/CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.22/Modules/FindPackageMessage.cmake /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake: phony
+build /home/aya/projet_personnel/frontend/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/flutter_js/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/aya/projet_personnel/frontend/linux/flutter/ephemeral/generated_config.cmake /home/aya/projet_personnel/frontend/linux/flutter/generated_plugins.cmake /home/aya/projet_personnel/frontend/linux/runner/CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.22/Modules/FindPackageMessage.cmake /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake: phony
 
 
 #############################################

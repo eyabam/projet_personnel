@@ -1,0 +1,7 @@
+name: MonProjetNode
+appmap_dir: tmp/appmap
+packages:
+  - path: backend
+    exclude:
+      - node_modules
+language: javascript
