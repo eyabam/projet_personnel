@@ -1,3 +1,5 @@
+#  Application Quiz Cybersécurité
+
 ##  Description
 
 Cette application mobile permet aux utilisateurs :
@@ -61,9 +63,6 @@ flutter run
 ---
 
 #  Cybersecurity Quiz App
-
-Personal project developed as part of the Master 1 in Computer Science (2024–2025)  
-by **Aya BEN AMARA**
 
 ---
 
